@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Omphalos 开发计划与进度</title><style>
+:root{--bg:#faf9f5;--card:#fff;--fg:#1f1e1d;--mut:#6b6a66;--line:#e3e1d8;--ok:#1d9e75;--warn:#ba7517;--acc:#534ab7;--trk:#ebe9e0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1b19;--card:#262522;--fg:#ece9e0;--mut:#a09d94;--line:#3a3935;--ok:#5dcaa5;--warn:#ef9f27;--acc:#afa9ec;--trk:#33322e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b19;--card:#262522;--fg:#ece9e0;--mut:#a09d94;--line:#3a3935;--ok:#5dcaa5;--warn:#ef9f27;--acc:#afa9ec;--trk:#33322e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.w{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:22px;font-weight:600;margin:0 0 4px}
+.sub{color:var(--mut);font-size:13px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.bar{height:8px;background:var(--trk);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);transition:width .2s}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.big{font-size:26px;font-weight:600}
+.mut{color:var(--mut);font-size:13px}
+.next{border-left:3px solid var(--acc);padding-left:10px;margin-top:10px}
+label{font-size:13px;color:var(--mut)}
+input[type=date]{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 6px;font:inherit;font-size:13px}
+h2{font-size:16px;font-weight:600;margin:0}
+.mh{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:6px}
+.t{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+.t:first-of-type{margin-top:8px}
+.d{width:78px;flex:none;font-size:12px;color:var(--mut)}
+.n{flex:1}
+.done .n{color:var(--mut);text-decoration:line-through}
+button{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer;font-size:14px;line-height:1}
+button.s1{border-color:var(--warn);color:var(--warn)}
+button.s2{border-color:var(--ok);background:var(--ok);color:var(--card)}
+.acc{font-size:12px;color:var(--mut);margin-top:6px}
+.today{background:rgba(83,74,183,.08);border-radius:6px}
+summary{cursor:pointer;font-weight:600;margin:10px 0 6px}
+svg.g{display:block;width:100%;height:auto}
+svg.g text{font:13px system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;fill:var(--fg)}
+svg.g .m{fill:var(--mut);font-size:12px}
+svg.g .h{font-weight:600}
+svg.g .a{fill:var(--pa);stroke:var(--acc);stroke-width:.6}
+svg.g .c{fill:var(--pc);stroke:var(--warn);stroke-width:.6}
+svg.g .z{fill:var(--card);stroke:var(--line)}
+svg.g .dz{fill:none;stroke:var(--mut);stroke-width:.6;stroke-dasharray:4 4}
+svg.g .l{stroke:var(--mut);stroke-width:1.2;fill:none}
+:root{--pa:#eeedfe;--pc:#faeeda}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pa:#2e2a63;--pc:#46300f}}
+:root[data-theme="dark"]{--pa:#2e2a63;--pc:#46300f}
+.v{display:block;font-size:12.5px;color:var(--mut);margin-top:2px}
+.done .n{text-decoration:none}
+.done .x{color:var(--mut);text-decoration:line-through}
+.d{width:52px}
+.sc{overflow-x:auto}
+svg.g{min-width:640px}
+svg.g .p0{fill:var(--trk);stroke:var(--mut);stroke-width:1}
+svg.g .p1{fill:var(--warn)}
+svg.g .p2{fill:var(--ok)}
+.rm{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.rn{width:112px;flex:none;font-size:13px;font-weight:600}
+.rb{flex:1;min-width:0}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dot{width:26px;height:26px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0}
+.dot.cur{outline:2px solid var(--acc);outline-offset:2px}
+.chip{display:inline-block;font-size:11px;font-weight:400;padding:0 8px;border-radius:10px;border:1px solid var(--line);color:var(--mut);margin-top:3px}
+.chip.s1{border-color:var(--warn);color:var(--warn)}
+.chip.s2{border-color:var(--ok);color:var(--ok)}
+.nowt{background:rgba(83,74,183,.08);border-radius:6px}
+.hl{background:rgba(83,74,183,.2);border-radius:6px}
+
+.w{max-width:960px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}p{margin:7px 0 12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.action{width:auto;height:auto;border-radius:6px;padding:7px 12px;font:inherit;font-size:13px}.t{align-items:flex-start;padding:12px 0}.t button{min-width:76px;width:auto;border-radius:6px;font-size:12px}.d{width:42px}.n{min-width:0}.note{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:7px;font:inherit;font-size:12px;margin-top:7px}.nav{display:flex;gap:7px;flex-wrap:wrap}.nav a{color:var(--acc);font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;text-decoration:none}h2{scroll-margin-top:20px}.s3{color:var(--warn);border-color:var(--warn)}#notice{font-size:12px;color:var(--warn)}@media(max-width:600px){.grid{grid-template-columns:1fr;gap:0}.d{display:none}.t{gap:7px}.w{padding:16px 12px}.t button{min-width:65px}}@media print{button,.toolbar,.note{display:none}.card{break-inside:avoid}body{background:white;color:black}}
+</style></head><body><main class="w"><h1>Omphalos 开发计划与进度</h1><p class="sub">修订：2026-11-09 · 先验证，再交付 MVP，随后按需求迭代</p><div class="card"><h2>项目定位</h2><p>本地优先的 Agent 控制台，连接 Claude Code、Codex 等执行器，统一管理任务、运行记录、人工审批与产出。Omphalos 为公开开源项目。</p><div class="grid"><div><b>第一版聚焦</b><p>单用户、本机运行、Web 任务管理、一个 Runner、日志与产出、已验证的执行审批。</p></div><div><b>后续逐步扩展</b><p>飞书 → Codex → 记忆与助手 → 工作流 → 插件与多渠道。后续阶段是方向，可根据反馈调整。</p></div></div></div>
+<div class="card"><h2>架构与工程约定</h2><p>入口（Web / 后续飞书） → 应用服务（任务、队列、策略） → Runner 适配层 → 本地执行器。SQLite 保存状态和事件，SSE 推送运行进展。</p><div class="grid"><div><b>核心对象</b><p>Task 表达目标；Run 表达一次执行；Approval 绑定具体操作或版本；Artifact 保存产出。重试与返工创建新 Run。</p></div><div><b>能力与安全边界</b><p>权限以执行器可落实的机制为准；worktree 隔离改动，子进程管理生命周期，两者都不是沙箱。插件与公网部署另行设计权限边界。</p></div></div><details><summary>状态与审批规则</summary><p>Run：queued → running ↔ waiting_approval → succeeded / failed / cancelled；执行中断标记 interrupted。cancel_requested 是中止请求，收到停止证据后才确认 cancelled。</p><p>执行权限审批、工作流审批、产出审核分别建模。审批绑定 run、操作或产出版本、身份和有效期；重复操作幂等。恢复会话不等于重试，外部副作用不能自动重放。</p></details></div><div class="card"><h2>开发节奏与进度</h2><p class="mut">每次约 2 小时作为工作块，任务可跨多个工作块。验收通过才标记完成；阻塞任务先记录原因。进度按任务计数，不代表工时。</p><div id="stats"></div><div class="toolbar"><button class="action" id="export">导出进度 JSON</button><button class="action" id="import">导入进度</button><button class="action" onclick="window.print()">打印 / 保存 PDF</button><input type="file" id="file" accept="application/json" hidden></div><p class="mut">状态和备注保存在当前浏览器；HTML 文件本身不会随点击修改。换设备或换文件前请导出进度。</p><div id="notice" role="status"></div><nav class="nav" id="nav"></nav></div><section id="list"></section></main><script>
+const PLAN=[{"id": "p0", "name": "P0 · 技术验证", "goal": "出口：确认首个执行器的真实能力；未验证能力不进入 MVP 承诺。", "items": [{"id": "p0-1", "title": "确认运行方式与能力矩阵", "accept": "固定首个支持平台及 Claude Code 版本；记录调用方式、结构化事件、权限、中止、会话恢复是否可用及证据。"}, {"id": "p0-2", "title": "最小 Runner 验证", "accept": "在测试仓库跑通任务；捕获输出、正常结束、异常退出；证明能终止任务及其衍生进程，记录限制。"}, {"id": "p0-3", "title": "权限与恢复验证", "accept": "验证执行前允许/拒绝、超时与会话恢复；不支持时明确降级，禁止通过日志猜测后置审批。"}, {"id": "p0-4", "title": "确定 MVP 技术方案", "accept": "默认 TypeScript + pnpm、React Web、Node 服务、SQLite；记录 Runner 接入选择和关键决策，锁定依赖版本。"}]}, {"id": "mvp", "name": "v0.1 · 本地任务闭环", "goal": "出口：Web 下发真实任务 → 查看日志 → 人工控制 → 审阅产出；单用户、本机运行。", "items": [{"id": "mvp-1", "title": "仓库与开源基础", "accept": "monorepo 分离 Web、服务、Runner 与共享协议；补 README、LICENSE、贡献说明、环境示例；CI 类型检查与构建通过。"}, {"id": "mvp-2", "title": "领域模型与数据库迁移", "accept": "建立 projects / tasks / runs / events / approvals / artifacts；定义状态与合法转换；重试创建新 run，保留关联。"}, {"id": "mvp-3", "title": "事件持久化与 SSE", "accept": "状态变更和事件在同一事务提交；提交后推送；客户端带事件 ID 重连可补读，重复事件不重复展示。"}, {"id": "mvp-4", "title": "项目注册与任务隔离", "accept": "用户显式注册项目；在独立 worktree 执行；记录分支与路径；同项目串行；说明 worktree 不提供系统沙箱。"}, {"id": "mvp-5", "title": "任务提交与 Claude Runner", "accept": "Web 显式新建任务，队列调用验证过的 Runner；统一输出并保留原始事件；成功、失败和未知退出能区分。"}, {"id": "mvp-6", "title": "任务详情与中止", "accept": "列表展示排队/运行/待审批/结束；详情显示日志；区分请求中止与确认停止，重复中止无副作用。"}, {"id": "mvp-7", "title": "执行权限审批", "accept": "仅接入 P0 验证通过的权限接口；绑定 run、操作及参数；允许/拒绝/超时/过期均有结果，重复或旧请求无效。"}, {"id": "mvp-8", "title": "结果与产出查看", "accept": "展示摘要、diff、改动文件及 worktree 路径；可标记接受或需修改；第一版通过新任务继续，不自动合并或 push。"}, {"id": "mvp-9", "title": "本机访问与配置", "accept": "默认仅监听回环地址；校验请求来源并保护写操作；凭据不进 Git，日志脱敏；明确进程权限、文件及网络边界。"}, {"id": "mvp-10", "title": "异常恢复与 v0.1 验收", "accept": "杀服务、执行器报错、SSE 断线、审批重复操作均有可解释状态；重启识别存活执行器，无法确认则标记 interrupted；跑通真实任务并发布 tag。"}]}, {"id": "v02", "name": "v0.2 · 飞书与可靠性", "goal": "出口：手机发任务、看状态、审批；失败与重试有清晰边界。", "items": [{"id": "v02-1", "title": "飞书渠道适配", "accept": "长连接收发；白名单校验；入站消息 ID 持久化去重；会话明确绑定项目，跨用户请求不可访问任务。"}, {"id": "v02-2", "title": "手机任务与审批卡片", "accept": "先支持显式指令 /new /status /stop；卡片节流更新；按钮验证身份、请求版本及有效期；旧卡片不能批准新操作。"}, {"id": "v02-3", "title": "断线与发送重试", "accept": "渠道恢复后可补状态；出站消息记录重试与幂等键；通知失败不改变任务执行结果。"}, {"id": "v02-4", "title": "恢复与清理策略", "accept": "区分重连、恢复会话、重新执行；不自动重放外部副作用；worktree 清理前确认任务结束且产出保留。"}, {"id": "v02-5", "title": "文档与故障演练", "accept": "新机器按文档安装；跑通手机闭环；覆盖服务重启、执行器遗留进程、重复通知和审批超时。"}]}, {"id": "v03", "name": "v0.3 · Codex 与执行器统一", "goal": "出口：第二个执行器验证抽象；能力差异可见。", "items": [{"id": "v03-1", "title": "Codex 技术验证与接入", "accept": "固定支持版本与协议；分别验证事件、权限、中止和恢复；同一任务可选择 Claude Code 或 Codex。"}, {"id": "v03-2", "title": "能力声明与统一事件", "accept": "Runner 声明 capabilities；不支持的操作在界面说明；统一状态保留执行器原始字段，不模拟不存在的能力。"}, {"id": "v03-3", "title": "用量与执行成本", "accept": "记录可获取的 token、耗时和模型；不可获取显示未知；区分估算、订阅额度与实际账单，不伪造精确费用。"}, {"id": "v03-4", "title": "回归与兼容说明", "accept": "两个 Runner 跑通核心验收；发布支持版本表、升级与迁移说明。"}]}, {"id": "v04", "name": "v0.4 · 记忆与助手能力", "goal": "出口：形成可管理的知识沉淀；按真实需求增加对话辅助。", "items": [{"id": "v04-1", "title": "本地记忆管理", "accept": "支持显式保存、查看、编辑、删除；区分用户偏好与项目知识；标记来源与作用域，明确注入规则。"}, {"id": "v04-2", "title": "上下文与会话管理", "accept": "会话绑定执行器、项目与历史；摘要可追溯；敏感内容可排除；恢复失败有明确提示。"}, {"id": "v04-3", "title": "附件与产出回传", "accept": "Web/飞书输入文件及图片；声明大小和类型限制；授权校验、路径校验和安全下载，支持产出回传。"}, {"id": "v04-4", "title": "可选 ChatBrain 与意图路由", "accept": "有需求再加入独立模型配置、工具循环与搜索；费用独立记录；模糊意图先确认，聊天不能隐式触发高权限任务。"}]}, {"id": "v05", "name": "v0.5 · 工作流与人工审核", "goal": "出口：固定多步流程可持久化暂停、审核、返工和继续。", "items": [{"id": "v05-1", "title": "持久化工作流最小版", "accept": "先用代码或配置定义流程；节点、输入输出和执行状态可查；重启后停在正确节点，不先做拖拽编辑器。"}, {"id": "v05-2", "title": "审核与返工", "accept": "执行权限、流程审批、产出审核分别建模；审核绑定产出版本；返工创建新 run，保留原结果与审核记录。"}, {"id": "v05-3", "title": "定时与 Webhook", "accept": "鉴权、签名或密钥校验；定义时区、错过触发策略、去重与重试；外部副作用按幂等策略执行。"}, {"id": "v05-4", "title": "通知与真实业务样例", "accept": "通知失败可重试；用一个真实流程验证生成→审核→返工→通过；选品作为可选示例，不绑定内核。"}]}, {"id": "v1", "name": "v1.0 · 扩展与公开发布", "goal": "出口：真实使用稳定后提取扩展接口，完成可复现安装与发布。", "items": [{"id": "v1-1", "title": "扩展接口与 MCP", "accept": "从已实现的两个真实场景提取接口；明确工具权限；不承诺同进程插件隔离，第三方扩展需受控执行边界。"}, {"id": "v1-2", "title": "第二渠道与能力降级", "accept": "Telegram 或 Slack 接入不改核心业务逻辑；无卡片渠道使用绑定身份与有效期的文字审批。"}, {"id": "v1-3", "title": "发布工程与维护", "accept": "完善迁移、备份恢复、脱敏诊断、SECURITY.md 与版本兼容；按安装文档复现完整闭环，再决定 v1.0。"}]}];
+const KEY='agenthub-plan-v3';const labels=['未开始','进行中','已完成','阻塞'];let state={};let available=true;
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}');if(!state||typeof state!=='object'||Array.isArray(state))state={}}catch(e){available=false;state={}}
+const ids=new Set(PLAN.flatMap(s=>s.items.map(t=>t.id)));
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){available=false}document.getElementById('notice').textContent=available?'':'浏览器存储不可用，请导出进度以免丢失。'}
+function render(){const list=document.getElementById('list');list.replaceChildren();const nav=document.getElementById('nav');nav.replaceChildren();const all=PLAN.flatMap(s=>s.items),done=all.filter(t=>state[t.id]?.status===2).length;const mvp=PLAN.filter(s=>['p0','mvp'].includes(s.id)).flatMap(s=>s.items);const md=mvp.filter(t=>state[t.id]?.status===2).length;const stats=document.getElementById('stats');stats.replaceChildren(el('div','big',`MVP ${md} / ${mvp.length}`),el('p','mut',`全路线 ${done} / ${all.length} · ${Math.round(done/all.length*100)}%`));const next=all.find(t=>state[t.id]?.status!==2);if(next)stats.append(el('div','next','下一项：'+next.title));
+PLAN.forEach(s=>{const a=el('a','',s.name);a.href='#'+s.id;nav.append(a);const card=el('article','card');card.id=s.id;const head=el('div','mh');head.append(el('h2','',s.name),el('span','mut',s.items.filter(t=>state[t.id]?.status===2).length+' / '+s.items.length));card.append(head,el('p','acc',s.goal));s.items.forEach((t,i)=>{const v=state[t.id]||{};const row=el('div','t'+(v.status===2?' done':''));row.append(el('span','d',String(i+1).padStart(2,'0')));const text=el('div','n');text.append(el('div','x',t.title),el('div','v','验收：'+t.accept));const note=el('textarea','note');note.rows=1;note.placeholder='备注 / 阻塞原因 / 验收证据';note.setAttribute('aria-label',t.title+'备注');note.value=v.note||'';note.oninput=()=>{state[t.id]={...state[t.id],note:note.value};save()};text.append(note);const b=el('button','s'+(v.status||0),labels[v.status||0]);b.title='点击切换：未开始 → 进行中 → 已完成 → 阻塞';b.setAttribute('aria-label',t.title+'：'+labels[v.status||0]);b.onclick=()=>{state[t.id]={...state[t.id],status:((state[t.id]?.status||0)+1)%4};save();render()};row.append(text,b);card.append(row)});list.append(card)});save()}
+document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify({schema:3,exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const u=URL.createObjectURL(blob),a=el('a');a.href=u;a.download='agenthub-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+document.getElementById('import').onclick=()=>document.getElementById('file').click();document.getElementById('file').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;const data=JSON.parse(await f.text());if(data.schema!==3||!data.state||typeof data.state!=='object'||Array.isArray(data.state))throw Error();const clean={};for(const [id,v]of Object.entries(data.state)){if(!ids.has(id)||!v||typeof v!=='object'||(v.status!==undefined&&(!Number.isInteger(v.status)||v.status<0||v.status>3))||(v.note!==undefined&&typeof v.note!=='string'))throw Error();clean[id]={status:v.status||0,note:v.note||''}}if(!confirm('导入将替换当前进度与备注，是否继续？'))return;state=clean;save();render();document.getElementById('notice').textContent='进度已导入。'}catch(err){document.getElementById('notice').textContent='导入失败：请选择此版本导出的有效进度 JSON。'}finally{e.target.value=''}};render();
+</script></body></html>
