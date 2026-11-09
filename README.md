@@ -43,4 +43,4 @@ Issues and design feedback are welcome. Start with the technical validation mile
 
 ## License
 
-[MIT](LICENSE)
+[Apache License 2.0](LICENSE)
